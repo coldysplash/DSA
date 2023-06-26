@@ -1,6 +1,6 @@
-#include <iostream>
-
-using namespace std;
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
 int bubble(int arr[], int size){
     int i, j, temp;
@@ -20,23 +20,22 @@ int main(){
 
     srand(time(NULL));
     int size;
-    cout << "Enter massive size >> ";
-    cin >> size;
+    printf("Enter massive size >> ");
+    scanf("%d", &size);
     int arr[size];
     for(int i = 0; i < size; i++){
 	arr[i] = rand()%10;
     }
-    cout << "Unsorted massive - ";
+    printf("Unsorted massive - ");
     for(int i = 0; i < size; i++){
-        cout << arr[i] << " ";
+        printf("%d ", arr[i]);
     }
     arr[size] = bubble(arr,size);
-    cout << "\n";
-    cout << "Sorted massive - ";
+    printf("\n");
+    printf("Sorted massive - ");
     for(int i = 0; i < size; i++){
-	cout << arr[i] << " ";
+	printf("%d ", arr[i]);
     }
-    cout << "\n";
+    printf("\n");
     return 0;
 }
-
