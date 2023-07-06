@@ -13,7 +13,7 @@ int bubble(int arr[], int size){
 	        }
 	    }
     }
-    return arr[size];
+    return 0;
 }
 
 int main(){
@@ -30,7 +30,7 @@ int main(){
     for(int i = 0; i < size; i++){
         printf("%d ", arr[i]);
     }
-    arr[size] = bubble(arr,size);
+    bubble(arr,size);
     printf("\n");
     printf("Sorted massive - ");
     for(int i = 0; i < size; i++){

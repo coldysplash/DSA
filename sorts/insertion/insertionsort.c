@@ -17,7 +17,7 @@ int insertion_sort(int arr[], int size){
         }
         arr[j + 1] = key;
     }
-    return arr[size];
+    return 0;
 }
 
 int main(){
@@ -34,7 +34,7 @@ int main(){
     for(int i = 0; i < size; i++){
         printf("%d ", arr[i]);
     }
-    arr[size] = insertion_sort(arr,size);
+    insertion_sort(arr,size);
     printf("\n");
     printf("Sorted massive - ");
     for(int i = 0; i < size; i++){

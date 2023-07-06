@@ -14,7 +14,7 @@ int selection_sort(int arr[], int size){
         arr[i] = arr[min_i];
         arr[min_i] = temp;
     }
-    return arr[size];
+    return 0;
 }
 
 int main(){
@@ -31,7 +31,7 @@ int main(){
     for(int i = 0; i < size; i++){
         printf("%d ", arr[i]);
     }
-    arr[size] = selection_sort(arr,size);
+    selection_sort(arr,size);
     printf("\n");
     printf("Sorted massive   - ");
     for(int i = 0; i < size; i++){
