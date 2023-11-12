@@ -1,1 +1,1 @@
-# Data Structure and Algorithm.
+# Data Structures and Algorithms implemented in C and C++
