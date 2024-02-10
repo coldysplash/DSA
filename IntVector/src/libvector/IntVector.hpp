@@ -7,7 +7,6 @@ namespace intvector {
 class IntVector {
 private:
   int *arr;
-
   size_t size_;
   size_t capacity_;
 
@@ -27,6 +26,8 @@ public:
   int *begin() const;
   int *end() const;
   int &operator[](const size_t index) noexcept;
+
+  ~IntVector() { delete[] arr; }
 };
 
 IntVector::IntVector() : arr(nullptr), size_(0), capacity_(0) {}
