@@ -1,0 +1,3 @@
+[submodule "IntVector/external/googletest"]
+	path = IntVector/external/googletest
+	url = https://github.com/google/googletest.git
