@@ -1,0 +1,31 @@
+---
+Checks: >
+  clang-diagnostic-*,
+  clang-analyzer-*,
+  *,
+  -altera-*,
+  -fuchsia-*,
+  -llvmlibc-*,
+  -llvm-header-guard,
+  -modernize-use-nodiscard,
+  -modernize-use-trailing-return-type,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-identifier-length,
+  -readability-magic-numbers,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -modernize-use-using,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -hicpp-explicit-conversions,
+  -google-explicit-constructor,
+  -google-runtime-int,
+  -google-build-using-namespace
+WarningsAsErrors: '*'
+HeaderFilterRegex: 'src/(libcsc)'
+CheckOptions:
+  - key:             cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor
+    value:           'true'
+  - key:             hicpp-special-member-functions.AllowSoleDefaultDtor
+    value:           'true'
+...
