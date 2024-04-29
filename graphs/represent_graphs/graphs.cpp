@@ -26,7 +26,8 @@ adjacency_matrix init_graph_2(int vertex_count, int edge_count) {
   for (size_t i = 0; i < edge_count; ++i) {
     int a, b;
     std::cin >> a >> b;
-
+    --a;
+    --b;
     /* (неориентированный граф) */
     graph[a][b] = 1;
     graph[b][a] = 1;
