@@ -4,3 +4,6 @@
 [submodule "List/external/googletest"]
 	path = List/external/googletest
 	url = https://github.com/google/googletest.git
+[submodule "Vector-Copy-on-Write/external/googletest"]
+	path = Vector-Copy-on-Write/external/googletest
+	url = https://github.com/google/googletest.git
