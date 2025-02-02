@@ -22,6 +22,9 @@ public:
   IntVector &operator=(IntVector &&vec);
   ~IntVector();
 
+  int *safe_copy(const int *src, size_t srcsize);
+  void swap(IntVector &rhs) noexcept;
+
   size_t size() const;
   size_t capacity() const;
 
@@ -30,6 +33,27 @@ public:
   int *end() const;
   int &operator[](const size_t index) noexcept;
 };
+
+int *IntVector::safe_copy(const int *src, size_t srcsize) {
+  int *copy = new int[srcsize];
+
+  try {
+    for (size_t i = 0; i < srcsize; ++i) {
+      copy[i] = src[i];
+    }
+  } catch (...) {
+    delete[] copy;
+    throw;
+  }
+
+  return copy;
+}
+
+void IntVector::swap(IntVector &rhs) noexcept {
+  std::swap(arr, rhs.arr);
+  std::swap(size_, rhs.size_);
+  std::swap(capacity_, rhs.capacity_);
+}
 
 /* Standard constructor */
 IntVector::IntVector() : arr(nullptr), size_(0), capacity_(0) {}
@@ -47,58 +71,32 @@ IntVector::IntVector(const std::initializer_list<int> &init_list)
 }
 
 /* Copy constructor */
-IntVector::IntVector(const IntVector &v_copy) {
-  arr = new int[v_copy.capacity_];
-  size_ = v_copy.size_;
-  capacity_ = v_copy.capacity_;
-  for (size_t i = 0; i != size_; ++i) {
-    arr[i] = v_copy.arr[i];
-  }
-}
+IntVector::IntVector(const IntVector &v_copy)
+    : arr(safe_copy(v_copy.arr, v_copy.size())), size_(v_copy.size()),
+      capacity_(size_) {}
 
 /* Move constructor */
-IntVector::IntVector(IntVector &&v_copy)
-    : size_(std::move(v_copy.size_)), capacity_(std::move(v_copy.capacity_)) {
+IntVector::IntVector(IntVector &&rhs) {
+  swap(rhs);
 
-  arr = std::move(v_copy.arr);
-
-  v_copy.arr = nullptr;
-  v_copy.size_ = 0;
-  v_copy.capacity_ = 0;
+  rhs.arr = nullptr;
+  rhs.size_ = rhs.capacity_ = 0;
 }
 
 /* Copy assignment operator */
-IntVector &IntVector::operator=(const IntVector &vec) {
-  if (vec.arr == arr) {
-    return *this;
-  }
+IntVector &IntVector::operator=(const IntVector &rhs) {
+  IntVector tmp(rhs);
 
-  delete[] arr;
-  arr = new int[vec.capacity_];
-
-  size_ = vec.size_;
-  capacity_ = vec.capacity_;
-
-  for (size_t i = 0; i < size_; ++i) {
-    arr[i] = vec.arr[i];
-  }
-
+  swap(tmp);
   return *this;
 }
 
 /* Move assignment operator */
-IntVector &IntVector::operator=(IntVector &&vec) {
-  if (vec.arr == arr) {
-    return *this;
-  }
+IntVector &IntVector::operator=(IntVector &&rhs) {
+  swap(rhs);
 
-  std::swap(arr, vec.arr);
-  std::swap(size_, vec.size_);
-  std::swap(capacity_, vec.capacity_);
-
-  vec.arr = nullptr;
-  vec.size_ = 0;
-  vec.capacity_ = 0;
+  rhs.arr = nullptr;
+  rhs.size_ = rhs.capacity_ = 0;
 
   return *this;
 }

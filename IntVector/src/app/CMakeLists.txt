@@ -10,3 +10,7 @@ target_sources(
     PRIVATE
         app/main.cpp
 )
+
+target_link_libraries(
+    ${target_name} IntVector
+)

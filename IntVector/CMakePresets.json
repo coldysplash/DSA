@@ -26,14 +26,6 @@
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug"
             }
-        },
-        {
-            "name": "test",
-            "inherits": "base",
-            "binaryDir": "${sourceDir}/build/test",
-            "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Test"
-            }
         }
     ],
     "buildPresets": [
@@ -46,11 +38,16 @@
             "name": "debug",
             "configurePreset": "debug",
             "jobs": 4
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "release",
+            "configurePreset": "release"
         },
         {
-            "name": "test",
-            "configurePreset": "test",
-            "jobs": 4
+            "name": "debug",
+            "configurePreset": "debug"
         }
     ]
 }
